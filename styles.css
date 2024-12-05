@@ -9,7 +9,12 @@
     /* Farbpalette */
     --gradient-colors: 
         #0099DC, 
-        #3b91e2, 
+        #3b91e2,
+        #6f92b3,
+        #768b9c,
+        #b16480, 
+        #b991a0,
+        #ae6bd4,
         #e7663a, 
         #B201CD, 
         #A400D3, 
@@ -19,7 +24,7 @@
     /* Glassmorphismus-Variablen */
     --glass-bg-light: rgba(255, 255, 255, 0.25);
     --glass-bg-hover: rgba(255, 255, 255, 0.35);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+    --glass-border: 3px solid rgba(255, 255, 255, 0.18);
     --glass-shadow: 
         0 8px 32px rgba(31, 38, 135, 0.37), 
         0 4px 6px rgba(0, 0, 0, 0.1);
@@ -31,7 +36,7 @@ body {
     background: linear-gradient(135deg, var(--gradient-colors));
     color: #eee7e7;
     background-size: 400% 400%;
-    animation: gradientAnimation 20s ease infinite;
+    animation: gradientAnimation 60s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
