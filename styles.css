@@ -1,0 +1,223 @@
+/* Reset und Basis-Stile */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Farbpalette */
+    --gradient-colors: 
+        #0099DC, 
+        #3b91e2, 
+        #e7663a, 
+        #B201CD, 
+        #A400D3, 
+        #5322e6, 
+        #8732f0;
+
+    /* Glassmorphismus-Variablen */
+    --glass-bg-light: rgba(255, 255, 255, 0.25);
+    --glass-bg-hover: rgba(255, 255, 255, 0.35);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+    --glass-shadow: 
+        0 8px 32px rgba(31, 38, 135, 0.37), 
+        0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Körper und globale Stile */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, var(--gradient-colors));
+    color: #eee7e7;
+    background-size: 400% 400%;
+    animation: gradientAnimation 20s ease infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Gradient-Animation */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphismus */
+.glass-morphism {
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-morphism::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(-45deg);
+    z-index: -1;
+}
+
+/* Header-Stile */
+header {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+/* Karten-Container */
+.card-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Breite Kapitelübersicht */
+    gap: 20px;
+    max-width: 1000px; /* Container-Breite */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Breite Kapitelübersicht */
+.overview-card {
+    grid-column: 1 / -1; /* Nimmt die gesamte Breite ein */
+    width: 100%;
+    text-align: center;
+}
+
+/* Karten unterhalb der Übersicht */
+.card-container .card:not(.overview-card) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Karten nebeneinander */
+}
+
+/* Karten-Stile */
+.card {
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+    position: relative;
+    cursor: pointer;
+    justify-self: center;
+    transition: transform 0.3s ease;
+}
+
+/* Responsives Design */
+@media (max-width: 600px) {
+    .card-container .card:not(.overview-card) {
+        grid-template-columns: 1fr; /* Bei kleinen Bildschirmen untereinander */
+    }
+    .card {
+        font-size: 1em;
+        width: 250px;
+        height: 180px;
+    }
+}
+
+/* Karten-Hover */
+.card:hover {
+    transform: scale(1.4);
+    z-index: 10;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--glass-shadow);
+    border: var(--glass-border);
+    border-radius: 20px;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    color: #ffffff; /* Korrigiert 'white' */
+}
+
+/* Karten-Seiten */
+.card-front {
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background: var(--glass-bg-hover);
+}
+
+/* Emoji-Stile */
+.card-front .emoji, .card-back .emoji {
+    font-size: 2.5rem;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Responsives Design */
+@media (max-width: 600px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+    .card {
+        font-size: 1em;
+        width: 250px;
+        height: 180px;
+    }
+    header {
+        padding: 30px;
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    header p {
+        font-size: 1em;
+    }
+}
