@@ -61,7 +61,7 @@ body {
 
 /* Header-Stile */
 header {
-    max-width: 1800px;
+    width: 1400px;
     margin: 20px auto;
     text-align: center;
     padding: 50px;
@@ -87,9 +87,7 @@ header {
 
 /* Kapitelübersicht zentriert */
 .overview-card {
-    grid-column: 1 / -1; /* Volle Breite */
-    width: 100%;
-    max-width: 800px;
+    width: 1000px;
     text-align: center;
     background: rgba(255, 255, 255, 0.35);
     padding: 30px;
@@ -110,7 +108,7 @@ header {
 /* Karten */
 .card {
     width: 600px; 
-    height: 400px;
+    height: 500px;
     perspective: 1000px;
     position: relative;
     cursor: pointer;
@@ -152,6 +150,8 @@ header {
     align-items: center;
     text-align: center;
     padding: 15px;
+    font-size: 1.8rem; /* Standard-Schriftgröße */
+    line-height: 1.5; /* Zeilenabstand für bessere Lesbarkeit */
 }
 
 /* Karten-Seiten */
