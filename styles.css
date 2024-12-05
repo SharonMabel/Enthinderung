@@ -59,21 +59,9 @@ body {
     overflow: hidden;
 }
 
-.glass-morphism::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: rotate(-45deg);
-    z-index: -1;
-}
-
 /* Header-Stile */
 header {
-    max-width: 800px;
+    max-width: 1800px;
     margin: 20px auto;
     text-align: center;
     padding: 50px;
@@ -83,72 +71,53 @@ header {
     -webkit-backdrop-filter: blur(5px);
     border: var(--glass-border);
     box-shadow: var(--glass-shadow);
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-header h1 {
-    font-size: 2.5em;
-    font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-header p {
-    font-size: 1.2em;
-    margin-top: 10px;
-    opacity: 0.9;
+    border-radius: 200px;
 }
 
 /* Karten-Container */
 .card-container {
     display: grid;
-    grid-template-columns: 1fr; /* Breite Kapitelübersicht */
+    grid-template-columns: 1fr; /* Erste Karte (Kapitelübersicht) nimmt gesamte Breite ein */
     gap: 20px;
-    max-width: 1000px; /* Container-Breite */
+    max-width: 1200px; /* Begrenzte Breite für Lesbarkeit */
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Breite Kapitelübersicht */
+/* Kapitelübersicht */
 .overview-card {
-    grid-column: 1 / -1; /* Nimmt die gesamte Breite ein */
+    grid-column: 1 / -1; /* Volle Breite */
     width: 100%;
     text-align: center;
+    background: rgba(255, 255, 255, 0.35);
+    padding: 30px;
+    font-size: 1.5rem; /* Größerer Text */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Karten unterhalb der Übersicht */
-.card-container .card:not(.overview-card) {
+/* Karten-Reihe */
+.cards-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Karten nebeneinander */
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); /* Karten nebeneinander */
+    gap: 20px; /* Abstand zwischen den Karten */
+    margin-top: 20px;
+    justify-items: center; /* Karten zentrieren */
 }
 
-/* Karten-Stile */
+
+/* Karten */
 .card {
-    width: 300px;
-    height: 200px;
+    width: 600px; 
+    height: 400px;
     perspective: 1000px;
     position: relative;
     cursor: pointer;
-    justify-self: center;
     transition: transform 0.3s ease;
 }
 
-/* Responsives Design */
-@media (max-width: 600px) {
-    .card-container .card:not(.overview-card) {
-        grid-template-columns: 1fr; /* Bei kleinen Bildschirmen untereinander */
-    }
-    .card {
-        font-size: 1em;
-        width: 250px;
-        height: 180px;
-    }
-}
-
-/* Karten-Hover */
+/* Hover-Effekt */
 .card:hover {
-    transform: scale(1.4);
+    transform: scale(1.05);
     z-index: 10;
 }
 
@@ -177,11 +146,10 @@ header p {
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 20px;
     text-align: center;
-    color: #ffffff; /* Korrigiert 'white' */
+    padding: 15px;
 }
 
 /* Karten-Seiten */
@@ -190,9 +158,12 @@ header p {
 }
 
 .card-back {
+    background: rgba(0, 0, 0, 0.7); /* Dunkler Hintergrund */
+    color: white; /* Weißer Text für Kontrast */
     transform: rotateY(180deg);
     background: var(--glass-bg-hover);
 }
+
 
 /* Emoji-Stile */
 .card-front .emoji, .card-back .emoji {
@@ -203,11 +174,10 @@ header p {
 
 /* Responsives Design */
 @media (max-width: 600px) {
-    .card-container {
-        grid-template-columns: 1fr;
+    .cards-row {
+        grid-template-columns: 1fr; /* Karten stapeln sich auf kleinen Bildschirmen */
     }
     .card {
-        font-size: 1em;
         width: 250px;
         height: 180px;
     }
