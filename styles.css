@@ -82,12 +82,14 @@ header {
     max-width: 1200px; /* Begrenzte Breite für Lesbarkeit */
     margin: 0 auto;
     padding: 20px;
+    justify-items: center
 }
 
-/* Kapitelübersicht */
+/* Kapitelübersicht zentriert */
 .overview-card {
     grid-column: 1 / -1; /* Volle Breite */
     width: 100%;
+    max-width: 800px;
     text-align: center;
     background: rgba(255, 255, 255, 0.35);
     padding: 30px;
@@ -98,7 +100,7 @@ header {
 /* Karten-Reihe */
 .cards-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); /* Karten nebeneinander */
+    grid-template-columns: repeat(2, 2fr);
     gap: 20px; /* Abstand zwischen den Karten */
     margin-top: 20px;
     justify-items: center; /* Karten zentrieren */
